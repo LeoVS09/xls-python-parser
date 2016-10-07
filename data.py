@@ -13,5 +13,6 @@ without_cells = ("Федеральное государственное бюдж
                  "Декан факультета ИКСС ",
                  "Л.Б. Бузюков")
 
-GROUPS_IN_TABLE_TITLE = "Группа"
-LAST_ROW_TABLE_TITLE = "С У Б Б О Т А    "
+GROUPS_IN_TABLE_TITLE = ["Группа"]
+LAST_ROW_TABLE_TITLE = ["С У Б Б О Т А    ", "С У Б Б О Т А   "]
+NOT_PARSING_NAMES_OF_LESSONS = ["Военная подготовка"]
