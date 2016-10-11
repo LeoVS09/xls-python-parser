@@ -1,6 +1,10 @@
-from Day import Day
+from entities.Day import Day
+
+
 class Group:
+
     def __init__(self,name):
+        super()
         self.name = name
         self.days = {}
 
@@ -11,3 +15,4 @@ class Group:
             self.days[day].add_lesson(time,lesson)
         else:
             self.days[day] = Day(day)
+

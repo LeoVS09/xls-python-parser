@@ -1,6 +1,9 @@
-import xlrd
 import data
-from Group import Group
+import xlrd
+from entities.Day import Day
+from entities.Group import Group
+from database.Database import Database
+from entities.Lesson import Lesson
 
 
 def pair_merged(sheet):
@@ -54,6 +57,8 @@ for sh in book.sheets():
     pair_merged(sh)
     groups = parse_table(sh)
 
+
+
     for group in groups:
         print(group.name, "------------------------------------------------")
         for name, day in group.days.items():
@@ -61,3 +66,6 @@ for sh in book.sheets():
             for time, lesson in day.lessons.items():
                 for l in lesson:
                     print(time, l)
+
+    db = Database()
+    db.save(groups)

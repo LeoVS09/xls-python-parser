@@ -1,6 +1,8 @@
 import re
-from srl import SRL
+
 import data as consts
+from srl import SRL
+
 
 def srl_capture(name, string):
     return (name, SRL("capture (" + string + ") as \"" + name + "\""))
@@ -10,6 +12,8 @@ class Lesson:
     # TODO: add кр. в парсинг и расчет недель
     # TODO: add зачет в расчет типов\
     # TODO: add понимание кабинета если он меняется на разных неделях
+
+
     filter = dict([
         srl_capture("week", """any of((letter from а to я exactly 3 times,
                                     literally "/нед" once),
@@ -38,7 +42,8 @@ class Lesson:
 
     plus2end = str(SRL('literally "+" once, anything once or more, must end'))
     slash_ned = str(SRL('literally "/нед"'))
-    def __init__(self, name=None, teacher=None, times=None, room=None, type=None, string=None):
+    def __init__(self, name=None, teacher=None, times=None, room=None, type=None, string=None,time=None):
+        super()
         if string is not None:
             name, teacher, times, room, type = self._parse(self, string)
         self.name = name
@@ -46,6 +51,7 @@ class Lesson:
         self.times = times
         self.room = room
         self.type = type
+        self.time = time
 
     @staticmethod
     def _parse(self, string):
@@ -184,3 +190,4 @@ class Lesson:
                 ",\n\"week\": " + str(self.get_times()) + \
                 ",\n\"room\": " + self.room + \
                 ",\n\"type\": " + self.type + "\n}"
+
