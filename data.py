@@ -19,3 +19,4 @@ GROUPS_IN_TABLE_TITLE = ["Группа"]
 LAST_ROW_TABLE_TITLE = ["С У Б Б О Т А    ", "С У Б Б О Т А   "]
 NOT_PARSING_NAMES_OF_LESSONS = ["Военная подготовка"]
 
+URL= ["https://www.sut.ru/doci/stud/raspisanie/iks/2.xls"]

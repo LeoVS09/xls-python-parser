@@ -4,7 +4,7 @@ from entities.Day import Day
 from entities.Group import Group
 from database.Database import Database
 from entities.Lesson import Lesson
-
+import requests
 
 def pair_merged(sheet):
 
@@ -49,9 +49,9 @@ def parse_table(sheet):
         i += 1
 
     return groups
-
-
-book = xlrd.open_workbook("2.xls", formatting_info=True)
+print("download:",data.URL[0])
+response = requests.get(data.URL[0])
+book = xlrd.open_workbook(file_contents=response.content, formatting_info=True)
 for sh in book.sheets():
     filter(sh)
     pair_merged(sh)

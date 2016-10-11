@@ -12,9 +12,17 @@ class Database:
     def save(self,groups):
         groups_db = []
         for group in groups:
-            group_db = GroupDB.create(name=group.name)
+            group_db = GroupDB.get(GroupDB.name == group.name)
+            if not group_db:
+                group_db = GroupDB.create(name=group.name)
             for name,day in group.days.items():
-                day_db = DayDB.create(name=day.name,group=group_db)
+                day_db = DayDB.get(DayDB.name == day.name,DayDB.group == group_db)
+                if not day_db:
+                    day_db = DayDB.create(name=day.name,group=group_db)
+                else:
+                    for lesson in LessonDB.select().where(LessonDB.day == day_db):
+                        print("deleted:",lesson.name,lesson.delete_instance())
+
                 for time,lessons in day.lessons.items():
                     for lesson in lessons:
                         lesson_db = LessonDB.create(name=lesson.name,
